@@ -29,6 +29,7 @@ export function useAuth() {
     },
     onSuccess: (user) => {
       queryClient.setQueryData(["/api/auth/user"], user);
+      window.location.href = "/space";
     },
     onError: (error) => {
       console.error("[AUTH] Login error:", error);
@@ -38,11 +39,15 @@ export function useAuth() {
   const registerMutation = useMutation({
     mutationFn: async (userData: any) => {
       const res = await apiRequest("POST", "/api/register", userData);
-      if (!res.ok) throw new Error("Registration failed");
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.message || "Registration failed");
+      }
       return await res.json();
     },
     onSuccess: (user) => {
       queryClient.setQueryData(["/api/auth/user"], user);
+      window.location.href = "/welcome";
     },
     onError: (error) => {
       console.error("[AUTH] Register error:", error);
@@ -55,6 +60,7 @@ export function useAuth() {
     },
     onSuccess: () => {
       queryClient.setQueryData(["/api/auth/user"], null);
+      window.location.href = "/auth";
     },
   });
 
