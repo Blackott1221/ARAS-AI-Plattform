@@ -75,7 +75,7 @@ export default function Auth() {
     }
 
     // Redirect to Replit Auth
-    window.location.href = "/api/login";
+    window.location.href = "/welcome";
   };
 
   const handleForgotPassword = () => {

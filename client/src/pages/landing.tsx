@@ -140,7 +140,7 @@ export default function Landing() {
               
               <GlowButton 
                 className="w-full"
-                onClick={() => window.location.href = "/api/login"}
+                onClick={() => window.location.href = "/welcome"}
               >
                 {isSignUp ? "Create Account" : "Sign In"}
               </GlowButton>
